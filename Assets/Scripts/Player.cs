@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
 	public Sprite[] sprites;
 	public GameObject footprint;
 	public int footprintAmount = 10;
+	public GameObject thrownWeapon;
+	public int thrownWeaponAmmo = 20;
 
     private Rigidbody2D rBody;
 	private SpriteRenderer spriteRenderer;
@@ -50,6 +52,11 @@ public class Player : MonoBehaviour {
 			sword.Attack();
 		}
 
+		// Attack with throwing weapon
+		if (Input.GetKeyDown ("r")) {
+			weaponThrow ();
+		}
+
 		if (moveH > 0.0f || moveV > 0.0f || moveH < 0.0f || moveV < 0.0f || sword.IsAttacking() == true) {
 			Time.timeScale = 1.0f;
 			Time.fixedDeltaTime = 0.02f;
@@ -67,6 +74,10 @@ public class Player : MonoBehaviour {
 		float angle = (180 / Mathf.PI) * AngleRad - 270;
 
 		rBody.rotation = angle;
+	}
+
+	private void weaponThrow(){
+		Instantiate (thrownWeapon, transform.position, transform.rotation);
 	}
 
 	private void SwitchSprite (bool isWalking) {
