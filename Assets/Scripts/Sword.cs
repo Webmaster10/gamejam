@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour {
 
 	public GameObject hand;
+	public Collider2D col;
 	public float attackCooldown = 1.0f;
 	public float attackTime = 0.4f;
 
@@ -18,24 +19,11 @@ public class Sword : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*if (attacking == true) {
-			attackingTime += Time.deltaTime;
-			if (attackingTime <= 0.5 * animationTime) {
-				//hand.transform.Rotate (new Vector3 (0.0f, 0.0f, -90.0f) * 2.0f * animationTime * Time.deltaTime);
-				hand.transform.Translate(Vector2.up * -2.0f * animationTime * Time.deltaTime);
-			} else {
-				//hand.transform.Rotate (new Vector3 (0.0f, 0.0f, 90.0f) * 2.0f * animationTime * Time.deltaTime);
-				hand.transform.Translate(Vector2.up * 2.0f * animationTime * Time.deltaTime);
-			}
-			if (attackingTime >= animationTime) {
-				attacking = false;
-				attackingTime = 0.0f;
-			}
-		}*/
 		if (coolDown > 0.0f) {
 			coolDown -= Time.deltaTime;
 			if (attackCooldown - coolDown >= attackTime && attacking == true) {
 				hand.transform.Rotate (new Vector3 (0.0f, 0.0f, 40.0f));
+				col.enabled = false;
 				attacking = false;
 			}
 		} else {
@@ -45,9 +33,20 @@ public class Sword : MonoBehaviour {
 
 	public void Attack() {
 		if (coolDown <= 0.0f) {
+			col.enabled = true;
 			hand.transform.Rotate (new Vector3 (0.0f, 0.0f, -40.0f));
 			coolDown = attackCooldown;
 			attacking = true;
+		}
+	}
+
+	public bool IsAttacking() {
+		return attacking;
+	}
+
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.gameObject.name == "enemySprite") {
+			col.gameObject.GetComponent<Enemy>().Kill();
 		}
 	}
 
