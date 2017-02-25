@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
 	public float speed = 10.0f;
 	public LayerMask ignoredObjects;
 	GameObject player;
+	public GameObject bloodSplat;
 
 	// Use this for initialization
 	void Start () {
@@ -47,5 +48,10 @@ public class Enemy : MonoBehaviour {
 		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
 		return q;
+	}
+
+	public void Kill() {
+		Instantiate (bloodSplat, transform.position, transform.rotation);
+		Destroy (gameObject);
 	}
 }

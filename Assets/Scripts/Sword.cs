@@ -19,20 +19,6 @@ public class Sword : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*if (attacking == true) {
-			attackingTime += Time.deltaTime;
-			if (attackingTime <= 0.5 * animationTime) {
-				//hand.transform.Rotate (new Vector3 (0.0f, 0.0f, -90.0f) * 2.0f * animationTime * Time.deltaTime);
-				hand.transform.Translate(Vector2.up * -2.0f * animationTime * Time.deltaTime);
-			} else {
-				//hand.transform.Rotate (new Vector3 (0.0f, 0.0f, 90.0f) * 2.0f * animationTime * Time.deltaTime);
-				hand.transform.Translate(Vector2.up * 2.0f * animationTime * Time.deltaTime);
-			}
-			if (attackingTime >= animationTime) {
-				attacking = false;
-				attackingTime = 0.0f;
-			}
-		}*/
 		if (coolDown > 0.0f) {
 			coolDown -= Time.deltaTime;
 			if (attackCooldown - coolDown >= attackTime && attacking == true) {
@@ -54,9 +40,13 @@ public class Sword : MonoBehaviour {
 		}
 	}
 
+	public bool IsAttacking() {
+		return attacking;
+	}
+
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.name == "enemySprite") {
-			Destroy (col.gameObject);
+			col.gameObject.GetComponent<Enemy>().Kill();
 		}
 	}
 
