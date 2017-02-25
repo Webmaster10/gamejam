@@ -16,15 +16,14 @@ public class Player : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 	private float timeToNextSprite;
 	private int currentSprite = 0;
-	private Vector3 lastPos;
 	private int footprints = 0;
+	private float stepWidth = 0.2f;
 
 	// Use this for initialization
 	void Start () {
         rBody = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		timeToNextSprite = stepTime;
-		lastPos = transform.position;
     }
 	
 	// Update is called once per frame
@@ -57,8 +56,6 @@ public class Player : MonoBehaviour {
 			Time.timeScale = 0.2f;
 			Time.fixedDeltaTime = 0.02f * Time.timeScale;
 		}
-
-		lastPos = transform.position;
 	}
 
 	void FixedUpdate() {
@@ -94,9 +91,9 @@ public class Player : MonoBehaviour {
 		Quaternion rotation = transform.rotation;
 		rotation *= Quaternion.Euler (0, 0, 180);
 		if (side == "left") {
-			Instantiate (footprint, transform.position + Vector3.left * 0.1f, rotation);
+			Instantiate (footprint, transform.position + Vector3.left * stepWidth, rotation);
 		} else {
-			Instantiate (footprint, transform.position + Vector3.right * 0.1f, rotation);
+			Instantiate (footprint, transform.position + Vector3.right * stepWidth, rotation);
 		}
 		footprints--;
 	}

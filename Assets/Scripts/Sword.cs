@@ -45,7 +45,7 @@ public class Sword : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.name == "enemySprite") {
+		if (col.gameObject.GetComponent<Enemy>() != null) {
 			col.gameObject.GetComponent<Enemy>().Kill();
 		}
 	}
