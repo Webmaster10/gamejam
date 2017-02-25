@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Enemy AI testing.unity
-=======
 - path: Assets/Scenes/test.unity
->>>>>>> upstream/master
   isLoaded: 1
   isActive: 1

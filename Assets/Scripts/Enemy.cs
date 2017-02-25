@@ -8,16 +8,14 @@ public class Enemy : MonoBehaviour {
 	public LayerMask ignoredObjects;
 	public float weaponCooldown = 2.0f;
 	GameObject player;
-<<<<<<< HEAD
 	public GameObject bullet;
 
 	private float cooldown = 0.0f;
-=======
 	public GameObject bloodSplat;
->>>>>>> upstream/master
 
 	// Use this for initialization
 	void Start () {
+		
 	}
 	
 	// Update is called once per frame
@@ -59,17 +57,16 @@ public class Enemy : MonoBehaviour {
 		return q;
 	}
 
-<<<<<<< HEAD
 	// Triggers the enemy to fire at the player!
 	void shootGun(){
 		if (cooldown <= 0.0f) {
 			Instantiate (bullet, transform.position, transform.rotation);
 			cooldown = weaponCooldown;
 		}
-=======
+	}
+
 	public void Kill() {
 		Instantiate (bloodSplat, transform.position, transform.rotation);
 		Destroy (gameObject);
->>>>>>> upstream/master
 	}
 }
