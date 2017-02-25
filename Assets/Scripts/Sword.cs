@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour {
 
 	public GameObject hand;
+	public Collider2D col;
 	public float attackCooldown = 1.0f;
 	public float attackTime = 0.4f;
 
@@ -36,6 +37,7 @@ public class Sword : MonoBehaviour {
 			coolDown -= Time.deltaTime;
 			if (attackCooldown - coolDown >= attackTime && attacking == true) {
 				hand.transform.Rotate (new Vector3 (0.0f, 0.0f, 40.0f));
+				col.enabled = false;
 				attacking = false;
 			}
 		} else {
@@ -45,9 +47,16 @@ public class Sword : MonoBehaviour {
 
 	public void Attack() {
 		if (coolDown <= 0.0f) {
+			col.enabled = true;
 			hand.transform.Rotate (new Vector3 (0.0f, 0.0f, -40.0f));
 			coolDown = attackCooldown;
 			attacking = true;
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.gameObject.name == "enemySprite") {
+			Destroy (col.gameObject);
 		}
 	}
 
