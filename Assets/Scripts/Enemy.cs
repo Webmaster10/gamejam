@@ -6,7 +6,11 @@ public class Enemy : MonoBehaviour {
 
 	public float speed = 10.0f;
 	public LayerMask ignoredObjects;
+	public float weaponCooldown = 2.0f;
 	GameObject player;
+	public GameObject bullet;
+
+	private float cooldown = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -21,9 +25,11 @@ public class Enemy : MonoBehaviour {
 		if (inLineOfSight (player)) {
 			Quaternion rotEnemy = lookAt (player);
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotEnemy, Time.deltaTime * speed);
+			shootGun(); // Fire weapon if player is in sight
 		} else {
 			transform.rotation = Quaternion.identity;
 		}
+		if (cooldown >= 0.0f) cooldown -= Time.deltaTime; // Tick down weapon cooldown if on cooldown
 	}
 
 	// Checks if the enemy can see the player
@@ -47,5 +53,13 @@ public class Enemy : MonoBehaviour {
 		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
 		return q;
+	}
+
+	// Triggers the enemy to fire at the player!
+	void shootGun(){
+		if (cooldown <= 0.0f) {
+			Instantiate (bullet, transform.position, transform.rotation);
+			cooldown = weaponCooldown;
+		}
 	}
 }

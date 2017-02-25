@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="GDSJam.CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Shoot.cs">
     <Files>
-      <File FileName="Assets\Scripts\Enemy.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="62" Column="30" />
+      <File FileName="Assets\Scripts\Shoot.cs" Line="26" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
