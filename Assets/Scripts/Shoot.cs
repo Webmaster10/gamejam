@@ -31,7 +31,7 @@ public class Shoot : MonoBehaviour {
 		if (coll.gameObject.tag != "Enemy") {
 			Destroy (gameObject);
 			if (coll.gameObject.GetComponent<Player> () != null) {
-				Destroy (coll.gameObject);
+				coll.gameObject.GetComponent<Player> ().Kill ();
 			}
 		}
 	}

@@ -47,6 +47,8 @@ public class Sword : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.GetComponent<Enemy>() != null) {
 			col.gameObject.GetComponent<Enemy>().Kill();
+		} else if (col.gameObject.GetComponent<Civillian>() != null) {
+			col.gameObject.GetComponent<Civillian>().Kill();
 		}
 	}
 

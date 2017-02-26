@@ -33,6 +33,8 @@ public class PlayerShoot : MonoBehaviour {
 			Destroy (gameObject);
 			if (coll.gameObject.GetComponent<Enemy> ()) {
 				coll.gameObject.GetComponent<Enemy> ().Kill ();
+			} else if (coll.gameObject.GetComponent<Civillian> ()) {
+				coll.gameObject.GetComponent<Civillian> ().Kill ();
 			}
 		}
 	}

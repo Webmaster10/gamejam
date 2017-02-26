@@ -12,7 +12,8 @@ public class Player : MonoBehaviour {
 	public GameObject footprint;
 	public int footprintAmount = 10;
 	public GameObject thrownWeapon;
-	public int thrownWeaponAmmo = 20;
+	public int thrownWeaponAmmo = 5;
+	public GameObject bloodSplat;
 
     private Rigidbody2D rBody;
 	private SpriteRenderer spriteRenderer;
@@ -53,7 +54,10 @@ public class Player : MonoBehaviour {
 
 		// Attack with throwing weapon
 		if (Input.GetKeyDown ("r")) {
-			weaponThrow ();
+			if (thrownWeaponAmmo > 0) {
+				weaponThrow ();
+				thrownWeaponAmmo--;
+			}
 		}
 
 		if (moveH > 0.0f || moveV > 0.0f || moveH < 0.0f || moveV < 0.0f || sword.IsAttacking() == true) {
@@ -107,5 +111,10 @@ public class Player : MonoBehaviour {
 			Instantiate (footprint, transform.position + Vector3.right * stepWidth, rotation);
 		}
 		footprints--;
+	}
+
+	public void Kill() {
+		Instantiate (bloodSplat, transform.position, transform.rotation);
+		Destroy (gameObject);
 	}
 }
