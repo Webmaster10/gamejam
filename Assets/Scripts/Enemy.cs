@@ -9,13 +9,16 @@ public class Enemy : MonoBehaviour {
 	public float weaponCooldown = 2.0f;
 	GameObject player;
 	public GameObject bullet;
+	public Sprite[] sprites;
 
 	private float cooldown = 0.0f;
 	public GameObject bloodSplat;
+	private SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start () {
-		
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer.sprite = sprites[Random.Range (0, 3)];
 	}
 	
 	// Update is called once per frame

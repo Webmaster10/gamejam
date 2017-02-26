@@ -29,8 +29,10 @@ public class Shoot : MonoBehaviour {
 	// Detect collisions
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag != "Enemy") {
-			print (coll.gameObject.tag);
 			Destroy (gameObject);
+			if (coll.gameObject.GetComponent<Player> () != null) {
+				Destroy (coll.gameObject);
+			}
 		}
 	}
 }
