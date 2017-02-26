@@ -82,10 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Blood.cs" />
+    <Compile Include="Assets\Scripts\ButtonScript.cs" />
     <Compile Include="Assets\Scripts\DanceFloor.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Footprint.cs" />
+    <Compile Include="Assets\Scripts\PlayScript.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\RandomFlashyColours.cs" />
